@@ -1,4 +1,4 @@
-﻿namespace DruidDotNet.DruidIndexer
+﻿namespace DruidDotNet.DruidIndexer.Enum
 {
     internal static class DruidIndexerStatusType
     {
@@ -6,12 +6,12 @@
         public const string Success = "SUCCESS";
         public const string Failed = "FAILED";
 
-        public static IndexerStatus GetStatus(string status, bool ended = false)
+        public static IndexerStatus GetStatus(string status)
         {
             switch (status)
             {
                 case Running:
-                    return ended ? IndexerStatus.Pending : IndexerStatus.Running;
+                    return IndexerStatus.Running;
                 case Success:
                     return IndexerStatus.Success;
                 case Failed:
