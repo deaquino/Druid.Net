@@ -1,4 +1,5 @@
-﻿using Refit;
+﻿using DruidDotNet.DruidIndexer.Spec;
+using Refit;
 using System.Threading.Tasks;
 
 namespace DruidDotNet.DruidIndexer

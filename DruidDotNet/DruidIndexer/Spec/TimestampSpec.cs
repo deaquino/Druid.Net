@@ -1,4 +1,4 @@
-﻿namespace DruidDotNet.DruidIndexer
+﻿namespace DruidDotNet.DruidIndexer.Spec
 {
     public class TimestampSpec
     {
