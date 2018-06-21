@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace DruidDotNet.DruidIndexer
 {
-    public interface IDruidIndexer
+    internal interface IDruidIndexer
     {
         [Post("druid/indexer/v1/task")]
         Task<string> Index(IndexSpec indexSpec);
