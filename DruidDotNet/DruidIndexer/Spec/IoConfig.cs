@@ -3,6 +3,6 @@
     public class IoConfig
     {
         public string Type { get; set; }
-        public FireHose FireHose { get; set; } = new FireHose();
+        public Firehose Firehose { get; set; } = new Firehose();
     }
 }

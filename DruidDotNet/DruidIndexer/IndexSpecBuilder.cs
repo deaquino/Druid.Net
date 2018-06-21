@@ -12,21 +12,21 @@ namespace DruidDotNet.DruidIndexer
         public IndexSpecBuilder()
         {
             _spec = new IndexSpec();
-            _spec.Type = _spec.TuningConfig.Type = _spec.IoConfig.Type = IndexType;
+            _spec.Type = _spec.Spec.TuningConfig.Type = _spec.Spec.IoConfig.Type = IndexType;
         }
 
         public IndexSpecBuilder SetDataSource(string dataSource)
         {
-            _spec.Spec.DataSource = dataSource;
+            _spec.Spec.DataSchema.DataSource = dataSource;
             return this;
         }
 
         public IndexSpecBuilder SetParser(string type, string parserFormat, string tsColumn, string tsFormat)
         {
-            _spec.Spec.Parser.Type = type;
-            _spec.Spec.Parser.ParseSpec.Format = parserFormat;
-            _spec.Spec.Parser.ParseSpec.TimestampSpec.Column = tsColumn;
-            _spec.Spec.Parser.ParseSpec.TimestampSpec.Format = tsFormat;
+            _spec.Spec.DataSchema.Parser.Type = type;
+            _spec.Spec.DataSchema.Parser.ParseSpec.Format = parserFormat;
+            _spec.Spec.DataSchema.Parser.ParseSpec.TimestampSpec.Column = tsColumn;
+            _spec.Spec.DataSchema.Parser.ParseSpec.TimestampSpec.Format = tsFormat;
             return this;
         }
 
@@ -39,7 +39,7 @@ namespace DruidDotNet.DruidIndexer
         {
             foreach (var dimension in dimensions)
             {
-                _spec.Spec.Parser.DimensionsSpec.Dimensions.Add(dimension);
+                _spec.Spec.DataSchema.Parser.ParseSpec.DimensionsSpec.Dimensions.Add(dimension);
             }
 
             return this;
@@ -54,7 +54,7 @@ namespace DruidDotNet.DruidIndexer
         {
             foreach (var dimension in dimensions)
             {
-                _spec.Spec.Parser.DimensionsSpec.DimensionExclusions.Add(dimension);
+                _spec.Spec.DataSchema.Parser.ParseSpec.DimensionsSpec.DimensionExclusions.Add(dimension);
             }
 
             return this;
@@ -69,7 +69,7 @@ namespace DruidDotNet.DruidIndexer
         {
             foreach (var dimension in dimensions)
             {
-                _spec.Spec.Parser.DimensionsSpec.SpatialDimensions.Add(dimension);
+                _spec.Spec.DataSchema.Parser.ParseSpec.DimensionsSpec.SpatialDimensions.Add(dimension);
             }
 
             return this;
@@ -77,30 +77,30 @@ namespace DruidDotNet.DruidIndexer
 
         public IndexSpecBuilder AddMetric(string type, string name, string fieldName = null)
         {
-            _spec.Spec.MetricsSpec.Add(new MetricsSpec(type, name, fieldName));
+            _spec.Spec.DataSchema.MetricsSpec.Add(new MetricsSpec(type, name, fieldName));
             return this;
         }
         public IndexSpecBuilder SetGranularity(string type, string segmentGranularity, string queryGranularity, DateTime startDate, DateTime endDate)
         {
-            _spec.Spec.GranularitySpec.Type = type;
-            _spec.Spec.GranularitySpec.SegmentGranularity = segmentGranularity;
-            _spec.Spec.GranularitySpec.SegmentGranularity = queryGranularity;
-            _spec.Spec.GranularitySpec.StartDate = startDate;
-            _spec.Spec.GranularitySpec.EndDate = endDate;
+            _spec.Spec.DataSchema.GranularitySpec.Type = type;
+            _spec.Spec.DataSchema.GranularitySpec.SegmentGranularity = segmentGranularity;
+            _spec.Spec.DataSchema.GranularitySpec.QueryGranularity = queryGranularity;
+            _spec.Spec.DataSchema.GranularitySpec.StartDate = startDate;
+            _spec.Spec.DataSchema.GranularitySpec.EndDate = endDate;
             return this;
         }
 
         public IndexSpecBuilder SetIoConfig(string type, string baseDir, string filter)
         {
-            _spec.IoConfig.FireHose.Type = type;
-            _spec.IoConfig.FireHose.BaseDir = baseDir;
-            _spec.IoConfig.FireHose.Filter = filter;
+            _spec.Spec.IoConfig.Firehose.Type = type;
+            _spec.Spec.IoConfig.Firehose.BaseDir = baseDir;
+            _spec.Spec.IoConfig.Firehose.Filter = filter;
             return this;
         }
 
         public IndexSpecBuilder SetForceExtendableShard(bool force)
         {
-            _spec.TuningConfig.ForceExtendableShardSpecs = force;
+            _spec.Spec.TuningConfig.ForceExtendableShardSpecs = force;
             return this;
         }
 

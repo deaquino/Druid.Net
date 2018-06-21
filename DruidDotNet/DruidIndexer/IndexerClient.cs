@@ -3,15 +3,17 @@ using System.Threading.Tasks;
 using System.Timers;
 using DruidDotNet.DruidIndexer.Enum;
 using DruidDotNet.DruidIndexer.Spec;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Refit;
 
 namespace DruidDotNet.DruidIndexer
 {
-    public class DruidIndexer
+    public class IndexerClient
     {
         private readonly string _baseUrl;
 
-        public DruidIndexer(string baseUrl)
+        public IndexerClient(string baseUrl)
         {
             _baseUrl = baseUrl;
         }
@@ -35,13 +37,24 @@ namespace DruidDotNet.DruidIndexer
 
         public async Task<string> Index(IndexSpec indexSpec)
         {
-            return await RestService.For<IDruidIndexer>(_baseUrl).Index(indexSpec);
+            return (await GetIndexer().Index(indexSpec)).Task;
         }
 
         public async Task<IndexerStatus> Status(string id)
         {
-            var status = await RestService.For<IDruidIndexer>(_baseUrl).Status(id);
-            return DruidIndexerStatusType.GetStatus(status);
+            var status = await GetIndexer().Status(id);
+            return DruidIndexerStatusType.GetStatus(status.Status.Status);
+        }
+
+        private IDruidIndexer GetIndexer()
+        {
+            return RestService.For<IDruidIndexer>(_baseUrl, new RefitSettings
+            {
+                JsonSerializerSettings = new JsonSerializerSettings
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                }
+            });
         }
     }
 }

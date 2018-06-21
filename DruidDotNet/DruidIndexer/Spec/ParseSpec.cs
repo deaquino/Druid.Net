@@ -4,5 +4,6 @@
     {
         public string Format { get; set; }
         public TimestampSpec TimestampSpec { get; set; } = new TimestampSpec();
+        public DimensionsSpec DimensionsSpec { get; set; } = new DimensionsSpec();
     }
 }
