@@ -1,6 +1,7 @@
 ﻿using DruidDotNet.Aggregator;
 using DruidDotNet.DruidIndexer.Firehose;
 using DruidDotNet.DruidIndexer.Spec;
+using DruidDotNet.Granularity;
 using System;
 using System.Collections.Generic;
 
@@ -78,12 +79,12 @@ namespace DruidDotNet.DruidIndexer
             return this;
         }
 
-        public IndexSpecBuilder SetGranularity(string type, string segmentGranularity, string queryGranularity,
+        public IndexSpecBuilder SetGranularity(string type, SimpleGranularity segmentGranularity, SimpleGranularity queryGranularity,
             DateTime startDate, DateTime endDate)
         {
             _spec.Spec.DataSchema.GranularitySpec.Type = type;
-            _spec.Spec.DataSchema.GranularitySpec.SegmentGranularity = segmentGranularity;
-            _spec.Spec.DataSchema.GranularitySpec.QueryGranularity = queryGranularity;
+            _spec.Spec.DataSchema.GranularitySpec.SimpleSegmentGranularity = segmentGranularity;
+            _spec.Spec.DataSchema.GranularitySpec.SimpleQueryGranularity = queryGranularity;
             _spec.Spec.DataSchema.GranularitySpec.StartDate = startDate;
             _spec.Spec.DataSchema.GranularitySpec.EndDate = endDate;
             return this;

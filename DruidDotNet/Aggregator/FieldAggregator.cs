@@ -1,17 +1,21 @@
 ﻿using DruidDotNet.Helpers;
+using Newtonsoft.Json;
 using System;
 
 namespace DruidDotNet.Aggregator
 {
     public class FieldAggregator : IAggregator
     {
-        public string Type { get; }
+        private readonly FieldAggregatorTypes _type;
+
+        [JsonProperty]
+        public string Type => Enum.GetName(typeof(FieldAggregatorTypes), _type).ToCamelCase();
         public string Name { get; }
 
         public FieldAggregator(string name, FieldAggregatorTypes type)
         {
             Name = name;
-            Type = Enum.GetName(typeof(FieldAggregatorTypes), type).ToCamelCase();
+            _type = type;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DruidDotNet.Granularity;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -7,8 +8,15 @@ namespace DruidDotNet.DruidIndexer.Spec
     public class GranularitySpec
     {
         public string Type { get; set; }
-        public string SegmentGranularity { get; set; }
-        public string QueryGranularity { get; set; }
+
+        public string SegmentGranularity => SimpleSegmentGranularity.Granularity;
+        public string QueryGranularity => SimpleQueryGranularity.Granularity;
+
+        [JsonIgnore]
+        public SimpleGranularity SimpleSegmentGranularity { get; set; }
+
+        [JsonIgnore]
+        public SimpleGranularity SimpleQueryGranularity { get; set; }
 
         [JsonIgnore]
         public DateTime? StartDate { get; set; }

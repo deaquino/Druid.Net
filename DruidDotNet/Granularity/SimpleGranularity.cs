@@ -1,17 +1,18 @@
-﻿using Newtonsoft.Json;
+﻿using DruidDotNet.Helpers;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using System;
 
 namespace DruidDotNet.Granularity
 {
-    [JsonObject(MemberSerialization.OptIn, NamingStrategyType = typeof(CamelCaseNamingStrategy))]
     public class SimpleGranularity : IGranularity<string>
     {
         private readonly SimpleGranularityTypes _granularity;
+
+        public string Granularity => Enum.GetName(typeof(SimpleGranularityTypes), _granularity).ToSnakeCase();
         public SimpleGranularity(SimpleGranularityTypes granularity)
         {
             _granularity = granularity;
         }
-
-        public string Granularity => _granularity.ToString();
     }
 }
