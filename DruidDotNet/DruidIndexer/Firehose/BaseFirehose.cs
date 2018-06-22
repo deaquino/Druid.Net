@@ -1,8 +1,6 @@
-﻿using System;
-namespace DruidDotNet.DruidIndexer.Firehose
+﻿namespace DruidDotNet.DruidIndexer.Firehose
 {
-    public abstract class BaseFirehose : IFirehose
+    public abstract class BaseFirehose : BaseType, IFirehose
     {
-        public abstract string Type { get; }
     }
 }

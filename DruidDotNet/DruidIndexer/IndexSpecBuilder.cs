@@ -1,4 +1,5 @@
-﻿using DruidDotNet.DruidIndexer.Firehose;
+﻿using DruidDotNet.Aggregator;
+using DruidDotNet.DruidIndexer.Firehose;
 using DruidDotNet.DruidIndexer.Spec;
 using System;
 using System.Collections.Generic;
@@ -71,12 +72,14 @@ namespace DruidDotNet.DruidIndexer
             return this;
         }
 
-        public IndexSpecBuilder AddMetric(string type, string name, string fieldName = null)
+        public IndexSpecBuilder AddMetric(IAggregator aggregator)
         {
-            _spec.Spec.DataSchema.MetricsSpec.Add(new MetricsSpec(type, name, fieldName));
+            _spec.Spec.DataSchema.MetricsSpec.Add(aggregator);
             return this;
         }
-        public IndexSpecBuilder SetGranularity(string type, string segmentGranularity, string queryGranularity, DateTime startDate, DateTime endDate)
+
+        public IndexSpecBuilder SetGranularity(string type, string segmentGranularity, string queryGranularity,
+            DateTime startDate, DateTime endDate)
         {
             _spec.Spec.DataSchema.GranularitySpec.Type = type;
             _spec.Spec.DataSchema.GranularitySpec.SegmentGranularity = segmentGranularity;

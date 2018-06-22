@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DruidDotNet.DruidIndexer.Firehose
+﻿namespace DruidDotNet.DruidIndexer.Firehose
 {
-    public interface IFirehose
+    public interface IFirehose : IType
     {
-        string Type { get; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DruidDotNet.DruidIndexer;
+﻿using DruidDotNet.Aggregator;
+using DruidDotNet.DruidIndexer;
 using DruidDotNet.DruidIndexer.Firehose;
 using System;
 
@@ -14,7 +15,7 @@ namespace DruidDotNet.ConsoleTest
                 .SetFirehose(new LocalFirehose("/x", "*.x"))
                 .SetForceExtendableShard(true)
                 .AddDimensions("dim1", "dim2")
-                .AddMetric("count", "count")
+                .AddMetric(new CountAggregator("count"))
                 .GetRequest();
 
             var api = new IndexerClient("http://cwdruid.westeurope.cloudapp.azure.com:8081/");

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DruidDotNet.Aggregator;
+using System.Collections.Generic;
 
 namespace DruidDotNet.DruidIndexer.Spec
 {
@@ -14,7 +15,7 @@ namespace DruidDotNet.DruidIndexer.Spec
     {
         public string DataSource { get; set; }
         public Parser Parser { get; set; } = new Parser();
-        public List<MetricsSpec> MetricsSpec { get; set; } = new List<MetricsSpec>();
+        public List<IAggregator> MetricsSpec { get; set; } = new List<IAggregator>();
         public GranularitySpec GranularitySpec { get; set; } = new GranularitySpec();
     }
 }
