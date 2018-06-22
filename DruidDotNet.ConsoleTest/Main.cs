@@ -1,4 +1,5 @@
 ﻿using DruidDotNet.DruidIndexer;
+using DruidDotNet.DruidIndexer.Firehose;
 using System;
 
 namespace DruidDotNet.ConsoleTest
@@ -7,11 +8,10 @@ namespace DruidDotNet.ConsoleTest
     {
         static void Main(string[] args)
         {
-            var request = new IndexSpecBuilder()
-                .SetDataSource("X")
+            var request = new IndexSpecBuilder("X")
                 .SetParser("string", "json", "x", "auto")
                 .SetGranularity("uniform", "year", "none", DateTime.Now, DateTime.Now)
-                .SetIoConfig("local", "/x", "x")
+                .SetFirehose(new LocalFirehose("/x", "*.x"))
                 .SetForceExtendableShard(true)
                 .AddDimensions("dim1", "dim2")
                 .AddMetric("count", "count")

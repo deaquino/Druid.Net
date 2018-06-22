@@ -1,4 +1,5 @@
-﻿using DruidDotNet.DruidIndexer.Spec;
+﻿using DruidDotNet.DruidIndexer.Firehose;
+using DruidDotNet.DruidIndexer.Spec;
 using System;
 using System.Collections.Generic;
 
@@ -9,16 +10,11 @@ namespace DruidDotNet.DruidIndexer
         private const string IndexType = "index";
         private readonly IndexSpec _spec;
 
-        public IndexSpecBuilder()
+        public IndexSpecBuilder(string dataSource)
         {
             _spec = new IndexSpec();
-            _spec.Type = _spec.Spec.TuningConfig.Type = _spec.Spec.IoConfig.Type = IndexType;
-        }
-
-        public IndexSpecBuilder SetDataSource(string dataSource)
-        {
             _spec.Spec.DataSchema.DataSource = dataSource;
-            return this;
+            _spec.Type = _spec.Spec.TuningConfig.Type = _spec.Spec.IoConfig.Type = IndexType;
         }
 
         public IndexSpecBuilder SetParser(string type, string parserFormat, string tsColumn, string tsFormat)
@@ -90,11 +86,9 @@ namespace DruidDotNet.DruidIndexer
             return this;
         }
 
-        public IndexSpecBuilder SetIoConfig(string type, string baseDir, string filter)
+        public IndexSpecBuilder SetFirehose(IFirehose firehose)
         {
-            _spec.Spec.IoConfig.Firehose.Type = type;
-            _spec.Spec.IoConfig.Firehose.BaseDir = baseDir;
-            _spec.Spec.IoConfig.Firehose.Filter = filter;
+            _spec.Spec.IoConfig.Firehose = firehose;
             return this;
         }
 

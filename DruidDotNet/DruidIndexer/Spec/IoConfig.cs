@@ -1,8 +1,10 @@
-﻿namespace DruidDotNet.DruidIndexer.Spec
+﻿using DruidDotNet.DruidIndexer.Firehose;
+
+namespace DruidDotNet.DruidIndexer.Spec
 {
     public class IoConfig
     {
         public string Type { get; set; }
-        public Firehose Firehose { get; set; } = new Firehose();
+        public IFirehose Firehose { get; set; }
     }
 }
