@@ -3,10 +3,10 @@ using System;
 
 namespace DruidDotNet.Aggregator
 {
-    public class FieldAggregator : BaseAggregator
+    public class FieldAggregator : IAggregator
     {
-        public override string Type { get; }
-        public override string Name { get; }
+        public string Type { get; }
+        public string Name { get; }
 
         public FieldAggregator(string name, FieldAggregatorTypes type)
         {

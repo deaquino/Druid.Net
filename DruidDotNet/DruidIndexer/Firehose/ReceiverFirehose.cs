@@ -1,8 +1,8 @@
 ﻿namespace DruidDotNet.DruidIndexer.Firehose
 {
-    public class ReceiverFirehose : BaseFirehose
+    public class ReceiverFirehose : IFirehose
     {
-        public override string Type => "receiver";
+        public string Type => "receiver";
         public string ServiceName { get; }
         public int BufferSize { get; }
 

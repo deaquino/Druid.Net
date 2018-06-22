@@ -2,9 +2,9 @@
 
 namespace DruidDotNet.DruidIndexer.Firehose
 {
-    public class CombiningFirehose : BaseFirehose
+    public class CombiningFirehose : IFirehose
     {
-        public override string Type => "combining";
+        public string Type => "combining";
         public List<IFirehose> Delegates { get; }
 
         public CombiningFirehose(params IFirehose[] delegates) : this(new List<IFirehose>(delegates))

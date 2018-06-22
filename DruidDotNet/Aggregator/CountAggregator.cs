@@ -1,10 +1,9 @@
 ﻿namespace DruidDotNet.Aggregator
 {
-    public class CountAggregator : BaseAggregator
+    public class CountAggregator : IAggregator
     {
-        public override string Type => "count";
-
-        public override string Name { get; }
+        public string Type => "count";
+        public string Name { get; }
 
         public CountAggregator(string name)
         {

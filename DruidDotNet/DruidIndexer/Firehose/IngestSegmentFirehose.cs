@@ -1,8 +1,8 @@
 ﻿namespace DruidDotNet.DruidIndexer.Firehose
 {
-    public class IngestSegmentFirehose : BaseFirehose
+    public class IngestSegmentFirehose : IFirehose
     {
-        public override string Type => "ingestSegment";
+        public string Type => "ingestSegment";
         public string DataSource { get; }
         public string Interval { get; }
 

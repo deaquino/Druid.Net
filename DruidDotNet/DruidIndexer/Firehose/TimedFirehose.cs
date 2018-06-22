@@ -2,9 +2,9 @@
 
 namespace DruidDotNet.DruidIndexer.Firehose
 {
-    public class TimedFirehose : BaseFirehose
+    public class TimedFirehose : IFirehose
     {
-        public override string Type => "timed";
+        public string Type => "timed";
         public IFirehose Delegate { get; }
         public DateTime ShutoffTime { get; }
 

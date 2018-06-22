@@ -1,8 +1,8 @@
 ﻿namespace DruidDotNet.DruidIndexer.Firehose
 {
-    public class LocalFirehose : BaseFirehose
+    public class LocalFirehose : IFirehose
     {
-        public override string Type => "local";
+        public string Type => "local";
         public string BaseDir { get; }
         public string Filter { get; }
 
