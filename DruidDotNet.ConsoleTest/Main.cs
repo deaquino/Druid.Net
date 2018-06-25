@@ -22,8 +22,6 @@ namespace DruidDotNet.ConsoleTest
 
             var api = new IndexerClient("http://cwdruid.westeurope.cloudapp.azure.com:8081/");
 
-
-
             var result = api.IndexAndWait(request, TimeSpan.FromMinutes(1)).Result;
         }
     }
