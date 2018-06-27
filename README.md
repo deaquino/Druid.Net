@@ -8,7 +8,9 @@ DruidDotNet exposes a simple API to work with Druid.
 [![Build history](https://buildstats.info/appveyor/chart/deaquino/druid-net)](https://ci.appveyor.com/project/deaquino/beatpulse/druid-net)
 
 ## Getting Started
+```powershell
 Install-Package Druid.Net
+```
 ```csharp
 var request = new IndexSpecBuilder("DataSourceName")
     .SetParser("string", "json", "TimestampField", "auto")
