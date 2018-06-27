@@ -1,0 +1,8 @@
+version: '0.1.{build}'
+image: Visual Studio 2017
+configuration: Release
+environment:
+  DruidDotNetVersion: 0.1.{build}
+build_script:
+- ps: '& .\build.ps1'
+deploy: off
