@@ -7,6 +7,12 @@
     <Version>0.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Jaime de Aquino Darnaude</Authors>
+    <Description>druid.io client</Description>
+    <RepositoryType></RepositoryType>
+    <RepositoryUrl>https://github.com/deaquino/Druid.Net</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/deaquino/Druid.Net</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/deaquino/Druid.Net/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>druid druid.io</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
