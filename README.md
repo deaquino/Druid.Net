@@ -12,6 +12,7 @@ Install-Package Druid.Net
 ```csharp
 var request = new IndexSpecBuilder("DataSourceName")
     .SetParser("string", "json", "TimestampField", "auto")
+    //type of granularity, segment granularity, query granularity, intervals startDate and endDate
     .SetGranularity("uniform", new SimpleGranularity(SimpleGranularityTypes.Year),
         new SimpleGranularity(SimpleGranularityTypes.None), DateTime.Now.Date.AddDays(-1), DateTime.Now.Date)
     .SetFirehose(new LocalFirehose("/path", "*.json"))
