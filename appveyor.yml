@@ -8,7 +8,12 @@ build_script:
   - ps: .\build.ps1
 artifacts:
   - path: .\artifacts\*.nupkg
-assembly_info:
-  account_feed: true 
-  project_feed: true 
 deploy: on
+dotnet_csproj:
+  patch: true
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+
