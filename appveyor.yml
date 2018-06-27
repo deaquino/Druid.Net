@@ -8,4 +8,7 @@ build_script:
   - ps: .\build.ps1
 artifacts:
   - path: .\artifacts\*.nupkg
-deploy: off
+assembly_info:
+  account_feed: true 
+  project_feed: true 
+deploy: on
