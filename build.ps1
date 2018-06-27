@@ -27,36 +27,9 @@ function Exec
 }
 
 $config = "release"
+$build = $env:APPVEYOR_BUILD_NUMBER
+$version = ("0.1." + $build
 
-Try {
+exec { & dotnet restore }
 
-	# Get dependencies from nuget and compile
-	Exec { dotnet restore }
-	Exec { dotnet build --configuration $config --no-restore }
-
-	# Find each test project and run tests. upload results to AppVeyor
-	Get-ChildItem .\**\*.csproj -Recurse | 
-		Where-Object { $_.Name -match ".*Test(s)?.csproj$"} | 
-		ForEach-Object { 
-		
-			Exec { dotnet test $_.FullName --configuration $config --no-build --no-restore --logger "trx;LogFileName=..\..\test-result.trx" }
-	
-			# if on build server upload results to AppVeyor
-			if ("${ENV:APPVEYOR_JOB_ID}" -ne "") {
-				$wc = New-Object 'System.Net.WebClient'
-				$wc.UploadFile("https://ci.appveyor.com/api/testresults/mstest/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\test-result.trx)) 
-			}
-
-			Remove-Item .\test-result.trx -ErrorAction SilentlyContinue
-	}
-
-	# Publish the nupkg artifacts
-	if (Get-Command "Push-AppveyorArtifact" -errorAction SilentlyContinue)
-	{
-		Get-ChildItem .\*\bin\$config\*.nupkg -Recurse | ForEach-Object { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-	}
-
-} Catch {
-	$host.SetShouldExit(-1)
-	throw
-}
+exec { & dotnet build Druid.Net.sln -c Release --version-suffix=$version -v q /nologo }
