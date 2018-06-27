@@ -28,8 +28,8 @@ function Exec
 
 set-location .\src\
 
-$version = ("0.1." + $env:APPVEYOR_BUILD_NUMBER)
-echo ("Version " + $version)
+$version = ($env:APPVEYOR_BUILD_VERSION)
+Write-Output ("Version " + $version)
 
 exec { & dotnet restore }
 
