@@ -28,7 +28,8 @@ function Exec
 
 $config = "release"
 $build = $env:APPVEYOR_BUILD_NUMBER
-$version = ("0.1." + $build
+$version = ("0.1." + $build)
+echo $version
 
 exec { & dotnet restore }
 
