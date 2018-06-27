@@ -34,3 +34,4 @@ echo $version
 exec { & dotnet restore }
 
 exec { & dotnet build Druid.Net.sln -c Release --version-suffix=$version -v q /nologo }
+exec { & dotnet pack Druid.Net\Druid.Net.csproj -c Release -o ..\artifacts --include-symbols --no-build --version-suffix=$suffix }
