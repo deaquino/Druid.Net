@@ -5,5 +5,7 @@ environment:
   matrix:
     - DruidDotNetVersion: 0.1.{build}
 build_script:
-- ps: .\build.ps1
+  - ps: .\build.ps1
+artifacts:
+  - path: .\artifacts\*.nupkg
 deploy: off
