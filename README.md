@@ -26,3 +26,12 @@ var api = new IndexerClient("http://druid.com:8081/");
 
 var result = await api.IndexAndWait(request, TimeSpan.FromMinutes(1));
 ```
+
+## Roadmap
+- [x] Indexer
+    - [x] Add Indexer Builder
+    - [x] Add Granularity Enum
+    - [ ] Add Druid Index ViewModel / Mapping.
+    - [ ] Add more Indexer Types.
+    - [ ] Add more enums.
+- [ ] Query
