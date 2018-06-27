@@ -9,4 +9,19 @@ DruidDotNet exposes a simple API to work with Druid.
 
 ## Getting Started
 Install-Package Druid.Net
+```csharp
+var request = new IndexSpecBuilder("DataSourceName")
+    .SetParser("string", "json", "TimestampField", "auto")
+    .SetGranularity("uniform", new SimpleGranularity(SimpleGranularityTypes.Year),
+        new SimpleGranularity(SimpleGranularityTypes.None), DateTime.Now.Date.AddDays(-1), DateTime.Now.Date)
+    .SetFirehose(new LocalFirehose("/path", "*.json"))
+    .SetForceExtendableShard(true)
+    .AddDimensions("dimension1", "dimension2")
+    .AddExcludedDimensions("dim_to_exclude")
+    .AddMetric(new CountAggregator("count"))
+    .GetRequest();
 
+var api = new IndexerClient("http://druid.com:8081/");
+
+var result = await api.IndexAndWait(request, TimeSpan.FromMinutes(1));
+```
