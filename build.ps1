@@ -26,8 +26,9 @@ function Exec
     }
 }
 
-$config = "release"
-$version = $env:DruidDotNetVersion
+set-location .\src\
+
+$version = ("0.1." + $env:APPVEYOR_BUILD_NUMBER)
 echo $version
 
 exec { & dotnet restore }
