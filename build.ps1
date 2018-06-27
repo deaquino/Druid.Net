@@ -29,9 +29,9 @@ function Exec
 set-location .\src\
 
 $version = ("0.1." + $env:APPVEYOR_BUILD_NUMBER)
-echo $version
+echo ("Version " + $version)
 
 exec { & dotnet restore }
 
 exec { & dotnet build Druid.Net.sln -c Release --version-suffix=$version -v q /nologo }
-exec { & dotnet pack Druid.Net\Druid.Net.csproj -c Release -o ..\artifacts --include-symbols --no-build --version-suffix=$suffix }
+exec { & dotnet pack Druid.Net\Druid.Net.csproj -c Release -o ..\artifacts --include-symbols --no-build --version-suffix=$version }
